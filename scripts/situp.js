@@ -18,7 +18,7 @@ module.exports = (robot) => {
     const userName = message.message.user.name;
 
     situp.setSitupCount(userName, targetTimes);
-    message.reply(`@${userName}: これから腹筋${targetTimes}回がんばって♥`);
+    message.reply(`これから腹筋${targetTimes}回がんばって♥`);
   });
 
   robot.respond((/腹筋した/i), (message) => {
@@ -27,8 +27,8 @@ module.exports = (robot) => {
     situp.addTotalCount(userName);
 
     const data = situp.getData();
-    message.send(`
-@${userName}: 腹筋${data[userName]["targetTimes"]}回お疲れさま♥
+    message.reply(`
+腹筋${data[userName]["targetTimes"]}回お疲れさま♥
 ${data[userName]["streaks"]}日連続で腹筋して、合計${data[userName]["totalCount"]}回腹筋したよ！
     `);
   });
