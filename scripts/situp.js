@@ -15,17 +15,21 @@ module.exports = (robot) => {
 
   robot.respond((/腹筋(\d+)回/i), (message) => {
     const targetTimes = Number(message.match[1]);
-    situp.setSitup(targetTimes);
-    message.send(`これから腹筋${targetTimes}回がんばって♥`);
+    const userName = message.message.user.name;
+
+    situp.setSitupCount(userName, targetTimes);
+    message.reply(`@${userName}: これから腹筋${targetTimes}回がんばって♥`);
   });
 
   robot.respond((/腹筋した/i), (message) => {
-    situp.addStreak();
-    situp.addTotalCount();
+    const userName = message.message.user.name;
+    situp.addStreak(userName);
+    situp.addTotalCount(userName);
+
     const data = situp.getData();
     message.send(`
-腹筋${data.targetTimes}回お疲れさま♥
-${data.streaks}日連続で腹筋して、合計${data.totalCount}回腹筋したよ！
+@${userName}: 腹筋${data[userName]["targetTimes"]}回お疲れさま♥
+${data[userName]["streaks"]}日連続で腹筋して、合計${data[userName]["totalCount"]}回腹筋したよ！
     `);
   });
 };
