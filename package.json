@@ -1,9 +1,9 @@
 {
-  "name": "hubot-trash-date-notifier",
+  "name": "hubot-yokohama-iekei",
   "version": "0.0.0",
   "private": true,
   "author": "kubosho <ta2@o2p.jp>",
-  "description": "ごみの日を通知します",
+  "description": "横浜家系bot",
   "dependencies": {
     "hubot": "^2.17.0",
     "hubot-diagnostics": "0.0.1",
