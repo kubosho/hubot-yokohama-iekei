@@ -13,7 +13,7 @@ const Situp = require("./lib/situp");
 module.exports = (robot) => {
   const situp = new Situp(robot, { brainName: "situp" });
 
-  robot.respond((/腹筋(\d+)回/i), (message) => {
+  robot.respond((/^腹筋(\d+)回/i), (message) => {
     const targetTimes = Number(message.match[1]);
     const userName = message.message.user.name;
 
@@ -21,7 +21,7 @@ module.exports = (robot) => {
     message.reply(`これから腹筋${targetTimes}回がんばって♥`);
   });
 
-  robot.respond((/腹筋した/i), (message) => {
+  robot.respond((/^腹筋(?:し|やっ)た/i), (message) => {
     const userName = message.message.user.name;
     situp.addStreak(userName);
     situp.addTotalCount(userName);
